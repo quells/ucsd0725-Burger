@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/quells/ucsd0725-Burger/issues"
   },
-  "homepage": "https://github.com/quells/ucsd0725-Burger#readme"
+  "homepage": "https://github.com/quells/ucsd0725-Burger#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "express-handlebars": "^3.0.0",
+    "method-override": "^2.3.10",
+    "mysql2": "^1.4.2"
+  }
 }
