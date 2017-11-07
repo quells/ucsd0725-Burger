@@ -101,5 +101,18 @@ module.exports = {
 
         console.log(q)
         return query(q, literals)
+    },
+    insertOne: function(tableName, obj) {
+        if (tableName === undefined) { return Promise.reject("invalid table name") }
+        if (obj === undefined) { return Promise.reject("invalid object") }
+
+        var columns = Object.keys(obj).join(", ")
+        var literals = Object.keys(obj).map(k => obj[k])
+        var valuePlaceholders = literals.map(v => "?").join(", ")
+
+        var q = `INSERT INTO ${tableName} (${columns}) VALUE (${valuePlaceholders})`
+
+        console.log(q)
+        return query(q, literals)
     }
 }
