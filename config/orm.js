@@ -134,5 +134,22 @@ module.exports = {
 
         console.log(q)
         return query(q, literals)
+    },
+    delete: function(tableName, options) {
+        if (tableName === undefined) { return Promise.reject("invalid table name") }
+
+        options = options || {}
+        var literals = []
+
+        var q = `DELETE FROM ${tableName}`
+        var where = parseWhere(options.where)
+
+        if (where !== null) {
+            q += where.sql
+            literals = literals.concat(where.values)
+        }
+
+        console.log(q, literals)
+        return query(q, literals)
     }
 }
