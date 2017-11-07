@@ -11,7 +11,10 @@ router.get("/all", (req, res) => {
             results: results
         })
     })
-    .catch(console.error)
+    .catch(err => {
+        console.error(err)
+        res.sendStatus(500)
+    })
 })
 
 module.exports = router
