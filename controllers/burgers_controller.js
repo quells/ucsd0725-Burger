@@ -42,4 +42,15 @@ router.put("/devour/:id", (req, res) => {
     })
 })
 
+router.delete("/clear/devoured", (req, res) => {
+    burger.clearDevoured()
+    .then(() => {
+        res.sendStatus(200)
+    })
+    .catch(err => {
+        console.error(err)
+        res.sendStatus(500)
+    })
+})
+
 module.exports = router

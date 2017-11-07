@@ -14,3 +14,20 @@ function devourBurger(id) {
         }
     })
 }
+
+function clearDevouredBurgers() {
+    $.ajax({
+        method: "DELETE",
+        url: "/api/burger/clear/devoured",
+        success: function(response) {
+            if (response === "OK") {
+                location.reload()
+            } else {
+                console.error(response)
+            }
+        },
+        error: function(err) {
+            console.error(err)
+        }
+    })
+}

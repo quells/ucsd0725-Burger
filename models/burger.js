@@ -32,5 +32,12 @@ module.exports = {
                 } 
             }
         )
+    },
+    clearDevoured: function() {
+        return orm.delete("burgers", {
+            where: {
+                devoured: true
+            }
+        })
     }
 }
