@@ -114,5 +114,25 @@ module.exports = {
 
         console.log(q)
         return query(q, literals)
+    },
+    updateOne: function(tableName, values, options) {
+        if (tableName === undefined) { return Promise.reject("invalid table name") }
+        if (values === undefined) { return Promise.reject("invalid values") }
+
+        var columns = Object.keys(values).map(k => `${k} = ?`).join(", ")
+        var literals = Object.keys(values).map(k => values[k])
+
+        var q = `UPDATE ${tableName} SET ${columns}`
+        var where = parseWhere(options.where)
+
+        if (where === null) {
+            return Promise.reject("invalid options")
+        }
+
+        q += where.sql
+        literals = literals.concat(where.values)
+
+        console.log(q)
+        return query(q, literals)
     }
 }
