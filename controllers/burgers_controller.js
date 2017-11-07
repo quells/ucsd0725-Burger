@@ -1,10 +1,10 @@
 const express = require("express")
-const orm = require("../config/orm")
+const burger = require("../models/burger")
 
 var router = express.Router()
 
 router.get("/all", (req, res) => {
-    orm.selectAll("burgers")
+    burger.getAll()
     .then(results => {
         res.json({
             error: false,
@@ -21,10 +21,7 @@ router.post("/new", (req, res) => {
     if (req.body.burger_name === undefined) {
         return res.sendStatus(500)
     }
-    orm.insertOne("burgers", {
-        burger_name: req.body.burger_name,
-        created_at: new Date()
-    })
+    burger.createNew(req.body.burger_name)
     .then(() => {
         res.sendStatus(200)
     })
@@ -35,14 +32,7 @@ router.post("/new", (req, res) => {
 })
 
 router.put("/devour/:id", (req, res) => {
-    var id = req.params.id
-    orm.updateOne("burgers", {
-        devoured: true
-    }, {
-        where: {
-            id: id
-        }
-    })
+    burger.devour(req.params.id)
     .then(() => {
         res.sendStatus(200)
     })
