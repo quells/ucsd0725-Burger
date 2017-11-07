@@ -1,3 +1,58 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+header {
+    background-color: #eee;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    margin-bottom: 1rem;
+}
+
+footer {
+    background-color: #ddd;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
 h1 {
     font-size: 80px;
+}
+
+@media screen and (max-width: 769px) {
+    h1 { font-size: 60px; }
+}
+
+@media screen and (max-width: 575px) {
+    h1 { font-size: 48px; }
+    header {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+}
+
+@media screen and (max-width: 419px) {
+    h1 { font-size: 32px; }
+    header {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+}
+
+.burgers {
+    list-style: none;
+    padding-left: 0;
+}
+
+.burgers li {
+    margin-bottom: 0.75rem;
 }

@@ -23,11 +23,11 @@ router.post("/new", (req, res) => {
     }
     burger.createNew(req.body.burger_name)
     .then(() => {
-        res.sendStatus(200)
+        res.redirect("/")
     })
     .catch(err => {
         console.error(err)
-        res.sendStatus(500)
+        res.redirect("/?error=true")
     })
 })
 

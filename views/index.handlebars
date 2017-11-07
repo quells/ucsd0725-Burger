@@ -1,1 +1,52 @@
+<div class="row">
+    <div class="col-sm-12 col-md-6">
+        <h2>Uneaten Burgers</h2>
+        <ul class="burgers">
+            {{#each burgers}}
+            {{#unless devoured}}
+            <li class="row">
+                <div class="col-6 align-items-center">
+                    {{burger_name}}
+                    <br>
+                    <small>created <time datetime="{{created_at}}" title="{{created_at}}">{{relativeTime created_at}}</time></small>
+                </div>
+                <div class="col-6 row align-items-center">
+                    <div class="col">
+                        <a href="#" class="btn btn-danger" onclick="devourBurger({{id}})">Devour</a>
+                    </div>
+                </div>
+            </li>
+            {{/unless}}
+            {{/each}}
+        </ul>
+    </div>
+    <div class="col-sm-12 col-md-6">
+        <h2>Devoured Burgers</h2>
+        <ul class="burgers">
+            {{#each burgers}}
+            {{#if devoured}}
+            <li>
+                {{burger_name}}
+                <br>
+                <small>eaten <time datetime="{{devoured_at}}" title="{{devoured_at}}">{{relativeTime devoured_at}}</time></small>
+            </li>
+            {{/if}}
+            {{/each}}
+        </ul>
+    </div>
+</div>
 
+<hr>
+
+<div class="row">
+    <div class="col-sm-12">
+        <h2>Add a Burger</h2>
+        <form action="/api/burger/new" method="POST" class="form-inline">
+        <div class="form-group mr-3">
+            <label for="burgerName" class="sr-only">Burger Name</label>
+            <input type="text" class="form-control" id="burgerName" name="burger_name" placeholder="What is the burger called?">
+        </div>
+        <button type="submit" class="btn btn-primary">Add Burger</button>
+    </form>
+    </div>
+</div>
