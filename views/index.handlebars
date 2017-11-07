@@ -5,14 +5,17 @@
             {{#each burgers}}
             {{#unless devoured}}
             <li class="row">
-                <div class="col-6 align-items-center">
+                <div class="col-1">
+                    {{id}}.
+                </div>
+                <div class="col-8 align-items-center">
                     {{burger_name}}
                     <br>
-                    <small>created <time datetime="{{created_at}}" title="{{created_at}}">{{relativeTime created_at}}</time></small>
+                    <small>made <time datetime="{{created_at}}" title="{{created_at}}">{{relativeTime created_at}}</time></small>
                 </div>
-                <div class="col-6 row align-items-center">
+                <div class="col-3 row align-items-center">
                     <div class="col">
-                        <a href="#" class="btn btn-danger" onclick="devourBurger({{id}})">Devour</a>
+                        <a href="#" class="btn btn-warning" onclick="devourBurger({{id}})">Devour</a>
                     </div>
                 </div>
             </li>
@@ -25,14 +28,25 @@
         <ul class="burgers">
             {{#each burgers}}
             {{#if devoured}}
-            <li>
-                {{burger_name}}
-                <br>
-                <small>eaten <time datetime="{{devoured_at}}" title="{{devoured_at}}">{{relativeTime devoured_at}}</time></small>
+            <li class="row">
+                <div class="col-1">
+                    {{id}}.
+                </div>
+                <div class="col-8 align-items-center">
+                    {{burger_name}}
+                    <br>
+                    <small>eaten <time datetime="{{devoured_at}}" title="{{devoured_at}}">{{relativeTime devoured_at}}</time></small>
+                </div>
             </li>
             {{/if}}
             {{/each}}
         </ul>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 col-md-6"></div>
+    <div class="col-sm-12 col-md-6">
+        <a href="#" class="btn btn-danger" onclick="clearDevouredBurgers()">Clear Burgers</a>
     </div>
 </div>
 
