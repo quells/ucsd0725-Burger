@@ -10,15 +10,27 @@ module.exports = {
         }))
     },
     createNew: function(name) {
-        return orm.insertOne("burgers", {
+        if (name === undefined) return Promise.reject("no burger name supplied")
+
+        var burger = {
             burger_name: name,
             created_at: new Date()
-        })
+        }
+        if (name.length < 1) delete burger.burger_name
+
+        return orm.insertOne("burgers", burger)
     },
     devour: function(id) {
         return orm.updateOne("burgers", 
-            { devoured: true },
-            { where: { id: id } }
+            {
+                devoured: true,
+                devoured_at: new Date()
+            },
+            {
+                where: { 
+                    id: id 
+                } 
+            }
         )
     }
 }
