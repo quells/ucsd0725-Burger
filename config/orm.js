@@ -80,11 +80,13 @@ ordered: {
 }
 
 module.exports = {
-    selectAll: function(table, options) {
+    selectAll: function(tableName, options) {
+        if (tableName === undefined) { return Promise.reject("invalid table name") }
+
         options = options || {}
         var literals = []
 
-        var q = `SELECT * FROM ${table}`
+        var q = `SELECT * FROM ${tableName}`
         var where = parseWhere(options.where)
         var orderBy = parseOrderBy(options.ordered)
 
