@@ -34,4 +34,22 @@ router.post("/new", (req, res) => {
     })
 })
 
+router.put("/devour/:id", (req, res) => {
+    var id = req.params.id
+    orm.updateOne("burgers", {
+        devoured: true
+    }, {
+        where: {
+            id: id
+        }
+    })
+    .then(() => {
+        res.sendStatus(200)
+    })
+    .catch(err => {
+        console.error(err)
+        res.sendStatus(500)
+    })
+})
+
 module.exports = router
